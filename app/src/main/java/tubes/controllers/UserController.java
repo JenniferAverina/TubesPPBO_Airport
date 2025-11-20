@@ -10,26 +10,12 @@ public class UserController {
     private User user;
     private UserRepository userRepository;
 
-    public UserController(User user) {
-        this.user = user;
+    public UserController() {
+        // this.user = user;
         this.userRepository = new UserRepository();
     }
 
     public List<User> getUserAcc() {
         return userRepository.getUser();
-    }
-
-    public User loginVerification(String adminID, String password) {
-        List<User> users = getUserAcc();
-        for (User user : users) {
-            // Seharusnya getAdminID
-            if (user.getNik().equals(adminID)) {
-                String salt = UtilHashing.generateSalt();
-                if(UtilHashing.verifyPassword(password, salt, user.getPassword())) {
-                    return user;
-                }
-            }
-        }
-        return null;
     }
 }
