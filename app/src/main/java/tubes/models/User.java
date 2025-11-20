@@ -7,14 +7,16 @@ public abstract class User {
     private String nama;
     private String tempatLahir;
     private String tanggalLahir;
+    private String email;
     private String password;
     private JenisKelamin jenisKelamin;
 
-    public User(String nik, String nama, String tempatLahir, String tanggalLahir, String password, JenisKelamin jenisKelamin) {
+    public User(String nik, String nama, String tempatLahir, String tanggalLahir, String email, String password, JenisKelamin jenisKelamin) {
         this.nik = nik;
         this.nama = nama;
         this.tempatLahir = tempatLahir;
         this.tanggalLahir = tanggalLahir;
+        this.email = email;
         this.password = password;
         this.jenisKelamin = jenisKelamin;
     }
@@ -45,6 +47,10 @@ public abstract class User {
 
     public JenisKelamin getJenisKelamin() {
         return this.jenisKelamin;
+    }
+    
+    public String getEmail() {
+        return this.email;
     }
 
     public abstract String toString();

@@ -7,8 +7,8 @@ public class Staff extends User{
     private String staffID;
     private Zone zone;
 
-    public Staff(String staffID, Zone zone, String nik, String nama, String tempatLahir, String tanggalLahir, String password, JenisKelamin jenisKelamin) {
-        super(nik, nama, tempatLahir, tanggalLahir, password, jenisKelamin);
+    public Staff(String staffID, Zone zone, String nik, String nama, String tempatLahir, String tanggalLahir, String email, String password, JenisKelamin jenisKelamin) {
+        super(nik, nama, tempatLahir, tanggalLahir, email, password, jenisKelamin);
         this.staffID = staffID;
         this.zone = zone;
     }

@@ -27,7 +27,7 @@ public class UserRepository {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 JenisKelamin jenisKelamin = rs.getString("jenisKelamin").equalsIgnoreCase("PRIA") ? JenisKelamin.PRIA : JenisKelamin.WANITA;
-                users.add(new Admin(rs.getString("adminID"), rs.getString("nik"), rs.getString("nama"), rs.getString("tempatLahir"), rs.getString("tanggalLahir"), rs.getString("passwords"), jenisKelamin));
+                users.add(new Admin(rs.getString("adminID"), rs.getString("nik"), rs.getString("nama"), rs.getString("tempatLahir"), rs.getString("tanggalLahir"), rs.getString("email"), rs.getString("passwords"), jenisKelamin));
             }
         } catch (Exception e) {
             e.printStackTrace();
