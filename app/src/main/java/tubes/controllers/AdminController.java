@@ -12,17 +12,16 @@ public class AdminController {
         this.userController = new UserController();
     }
     
-    public User loginVerification(String email, String password) {
-        List<User> users = userController.getUserAcc();
+    public boolean loginVerification(String email, String password) {
+        List<User> users = this.userController.getUserAcc();
         for (User user : users) {
-            // Seharusnya getAdminID
             if (user.getEmail().equals(email)) {
                 String salt = UtilHashing.generateSalt();
-                if(UtilHashing.verifyPassword(password, salt, user.getPassword())) {
-                    return user;
+                if(UtilHashing.verifyPassword(password, salt, user.getPassword())){
+                    return true;
                 }
             }
         }
-        return null;
+        return false;
     }
 }
