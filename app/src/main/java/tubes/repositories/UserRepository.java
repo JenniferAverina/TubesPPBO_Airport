@@ -3,6 +3,8 @@ package tubes.repositories;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import tubes.database.Database;
 import tubes.models.Admin;
@@ -17,21 +19,20 @@ public class UserRepository {
     }
 
     // Login
-    public User getUserLogin(String adminID, String password) {
-        String sql = "SELECT u.*, a.adminID FROM users u INNER JOIN admin a ON u.userID = a.userID WHERE a.adminID = ? AND u.passwords = ?";
+    public List<User> getUser() {
+        String sql = "SELECT u.*, a.adminID FROM users u INNER JOIN admin a ON u.userID = a.userID";
+        List<User> users = new ArrayList<>();
         try{
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, adminID);
-            pstmt.setString(1, password);
             ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
+            while (rs.next()) {
                 JenisKelamin jenisKelamin = rs.getString("jenisKelamin").equalsIgnoreCase("PRIA") ? JenisKelamin.PRIA : JenisKelamin.WANITA;
-                return new Admin(rs.getString("adminID"), rs.getString("nik"), rs.getString("nama"), rs.getString("tempatLahir"), rs.getString("tanggalLahir"), rs.getString("passwords"), jenisKelamin);
+                users.add(new Admin(rs.getString("adminID"), rs.getString("nik"), rs.getString("nama"), rs.getString("tempatLahir"), rs.getString("tanggalLahir"), rs.getString("passwords"), jenisKelamin));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return users;
     }
 
 }
