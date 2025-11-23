@@ -39,5 +39,5 @@ public class ImigrationArea {
     public void addItems(Items items) {
         this.confiscatedItems.add(items);
     }
-    
+
 }
